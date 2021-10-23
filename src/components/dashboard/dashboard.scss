@@ -1,0 +1,40 @@
+.dash-content {
+  // border: 1px solid blueviolet;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.dash-take-note-container {
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 82%;
+  margin-top: 4vh;
+}
+
+.take-note-two-main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.take-a-note-two-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-view-note-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: auto;
+  // border: 1px solid red;
+}
+
+.take-note-main-container,
+.take-note-two-main-container {
+  align-self: center;
+}

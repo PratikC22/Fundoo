@@ -1,0 +1,33 @@
+$font-stack: Roboto, Helvetica, sans-serif;
+
+input {
+  padding: 0 10px;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: $font-stack;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.take-a-note-two-content {
+  display: flex;
+  justify-content: space-between;
+  // border: 1px solid red;
+}
+
+.take-a-note-two {
+  // border: 1px solid black;
+}
+
+.take-note-bottom {
+  // border: 1px solid blue;
+}
+
+.take-note-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
