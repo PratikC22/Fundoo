@@ -129,6 +129,7 @@ class signUp extends Component {
       signUpRequest(obj)
         .then((response) => {
           console.log(response);
+          (response.status === 200) && alert("You have sucessesfully signed up")
         })
         .catch((error) => {
           console.warn(error);

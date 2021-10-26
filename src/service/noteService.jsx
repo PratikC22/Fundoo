@@ -17,3 +17,9 @@ export const requestData = async () => {
   let dataArray = response.data.data.data;
   return dataArray;
 };
+
+export const addNoteToArchive = async (obj) => {
+  // let response = await axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/archiveNotes', obj, config)
+  let response = await axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/archiveNotes', obj, config)
+  return response
+}

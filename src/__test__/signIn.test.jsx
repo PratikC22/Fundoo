@@ -9,7 +9,7 @@ const signInComponent = shallow(<SignIn />);
 
 describe('Test if SignIn loading correctly', () => {
 
-    it("test if bookstore image and text container is loading", () => {
+    it("test if google logo image and text container is loading", () => {
         expect(signInComponent.find('.signin-google-logo').exists()).toBe(true)
     });
 

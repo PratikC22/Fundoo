@@ -59,7 +59,7 @@ class TakeNoteTwo extends Component {
       <div className="take-note-two-main-container">
         <Paper
           className="take-a-note-two-content"
-          elevation={4}
+          elevation={2}
           style={paperStyle}
         >
           <div className="take-a-note-two">
@@ -147,7 +147,7 @@ const paperStyle = {
   justifyContent: "space-Between",
   padding: "12px 20px 0 20px",
   minHeight: 130,
-  width: 600,
+  // width: 600,
   borderRadius: "5px",
   // border: "1px solid red",
 };

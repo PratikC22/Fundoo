@@ -18,7 +18,7 @@ class TakeNoteOne extends Component {
             >
                 <Paper
                     className="take-a-note-content"
-                    elevation={4}
+                    elevation={2}
                     style={paperStyle}
                 >
                     <div className="take-a-note">Take a note...</div>
@@ -47,7 +47,7 @@ const paperStyle = {
     alignItems: "center",
     padding: 20,
     height: 50,
-    width: 600,
+    // width: 600,
     borderRadius: "5px",
     // border: "1px solid red",
 };
