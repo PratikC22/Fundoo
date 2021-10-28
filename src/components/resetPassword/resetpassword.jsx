@@ -16,28 +16,33 @@ class ResPass extends Component {
         }
     }
 
+    // Set token in local storage
     componentDidMount() {
         // console.log(this.props);
         localStorage.setItem("token", this.props.match.params.token)
         // console.log(this.props.match.params.token);
     }
 
+    // Update values in state
     handleChange = input => e => {
         this.setState({
             [input]: e.target.value
         })
     }
 
+    // Toggle password visibility
     handleClickShowPassword = () => {
         this.setState({
             showPassword: !this.state.showPassword
         });
     };
 
+    // Prevent default
     handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
 
+    // Submit on click
     handleSubmit = (e) => {
         e.preventDefault();
         const { password } = this.state
@@ -55,6 +60,8 @@ class ResPass extends Component {
                 <div className="res-pass-border-container">
                     <div className="res-pass-content">
                         <div className="res-pass-google-logo">
+
+                            {/*------- Google logo ------- */}
                             <img
                                 src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
                                 width="75"
@@ -62,15 +69,20 @@ class ResPass extends Component {
                         </div>
 
                         <div className="res-pass-header-sub-header-text">
+
+                            {/*------- Google header ------- */}
                             <div className="res-pass-header-text">
                                 Account recovery
                             </div>
+
+                            {/*------- Google sub header ------- */}
                             <div className="res-pass-sub-header-text">
                                 Recover your Google Account
                             </div>
                         </div>
                         <form onSubmit={this.handleSubmit}>
 
+                            {/*------- Input password field ------- */}
                             <div className="signin-password">
                                 <FormControl fullWidth variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
@@ -117,6 +129,7 @@ class ResPass extends Component {
                                     </Link>
                                 </div>
 
+                                {/*------- Next button ------- */}
                                 <div className="res-pass-btn">
                                     <Button
                                         onClick={this.handleSubmit}
@@ -130,6 +143,7 @@ class ResPass extends Component {
                     </div>
                 </div>
 
+                {/*------- footer ------- */}
                 <div className='res-pass-footer'>
                     <div className='languages'>
                         English (India)
