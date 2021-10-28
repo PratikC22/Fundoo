@@ -26,16 +26,19 @@ class TakeNoteTwo extends Component {
     };
   }
 
+  // Method to change value in state
   handleChange = (input) => (event) => {
     this.setState({
       [input]: event.target.value,
     });
   };
 
+  // Method to switch to takeNoteOne
   handleTakeNote = () => {
     this.props.handleTakeNote();
   };
 
+  // Method to submit note
   handleSubmit = () => {
     const { title, description, isArchived } = this.state;
     const obj = {
@@ -43,11 +46,13 @@ class TakeNoteTwo extends Component {
       description: description,
       isArchived: isArchived
     };
+
     this.handleTakeNote();
     title !== "" &&
       takeNoteRequest(obj)
         .then((response) => {
           console.log(response);
+          console.log(obj);
         })
         .catch((error) => {
           console.warn(error);
@@ -64,6 +69,8 @@ class TakeNoteTwo extends Component {
           elevation={2}
           style={paperStyle}
         >
+
+          {/* ----------- Title ----------- */}
           <div className="take-a-note-two">
             <InputBase
               className={classes.input}
@@ -71,6 +78,8 @@ class TakeNoteTwo extends Component {
               placeholder="Title"
               onChange={this.handleChange("title")}
             />
+
+            {/* ----------- Description ----------- */}
             <InputBase
               className={classes.input}
               multiline
@@ -79,6 +88,8 @@ class TakeNoteTwo extends Component {
               placeholder="Take a note..."
             />
           </div>
+
+          {/* ----------- Icons ----------- */}
           <div className="take-note-bottom">
             <div className="take-note-bottom-icons">
               <IconButton sx={{ p: "10px" }}>
@@ -114,6 +125,7 @@ class TakeNoteTwo extends Component {
               </IconButton>
             </div>
 
+            {/* ----------- Close button ----------- */}
             <div className="take-note-close">
               <div className="close">
                 <IconButton

@@ -13,52 +13,24 @@ import ArchiveNotes from 'src/components/archiveNotes/archiveNotes'
 
 export const MyRouter = () => {
     return (
+
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={signIn} />
                 <Route path='/signUp' component={signUp} />
                 <Route path='/ResetFundooPassword/' component={ResetFundooPassword} />
                 <Route path='/resetpassword/:token' component={Resetpassword} />
-
-                <Route path='/home' render={() =>
-                    <div className="structure" style={styles}>
-                        <MainContainer />
-                        <Dashboard />
-                    </div>
-                } />
-
-                <Route path='/reminders' render={() =>
-                    <div className="structure" style={styles}>
-                        <MainContainer />
-                        <Reminders />
-                    </div>
-                } />
-
-                <Route path='/archive' render={() =>
-                    <div className="structure" style={styles}>
-                        <MainContainer />
-                        <ArchiveNotes />
-                    </div>
-                } />
-
-                <Route path='/trash' render={() =>
-                    <div className="structure" style={styles}>
-                        <MainContainer />
-                        <Trash />
-                    </div>
-                } />
-
-
-                <Route path='*'><PageNotFound /></Route>
+                <>
+                    <MainContainer />
+                    <Route exact path="/home" component={Dashboard}></Route>
+                    <Route exact path="/reminders" component={Reminders}></Route>
+                    <Route exact path="/archive" component={ArchiveNotes}></Route>
+                    <Route exact path="/trash" component={Trash} ></Route>
+                </>
+                <Route exact path="*" component={PageNotFound}></Route>
             </Switch>
         </BrowserRouter>
     )
-}
-
-const styles = {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between"
 }
 
 export default MyRouter

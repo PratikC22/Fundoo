@@ -6,29 +6,25 @@ import ViewNotes from "../viewNotes/viewNotes";
 
 class Reminders extends Component {
     render() {
+        // Destructuring props
         const { takeNoteOpen, handleTakeNote } = this.props
         return (
-            <div style={styles}>
+            <div className="dash-styles">
+
+                {/* ------ Conditional rendering of Take note ------ */}
                 {takeNoteOpen ? (
                     <TakeNoteOne handleTakeNote={handleTakeNote} />
                 ) : (
                     <TakeNoteTwo handleTakeNote={handleTakeNote} />
                 )}
+
+                {/* ------ View Notes component ------ */}
                 <div className="dash-view-note-container">
                     <ViewNotes />
                 </div>
             </div>
         )
     }
-}
-
-const styles = {
-    width: "80%",
-    display: "flex",
-    flexDirection: "column",
-
-    flexWrap: "wrap",
-    border: "1px solid red"
 }
 
 export default updatedComponent(Reminders);

@@ -1,8 +1,9 @@
 import axios from "axios";
 const url = "http://fundoonotes.incubation.bridgelabz.com/api/";
+
 const config = {
   headers: {
-    "Content-Type": "application/json",
+    // "Content-Type": 'application/json',
     Authorization: localStorage.getItem("fundooToken"),
   },
 };
@@ -19,7 +20,6 @@ export const requestData = async () => {
 };
 
 export const addNoteToArchive = async (obj) => {
-  // let response = await axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/archiveNotes', obj, config)
-  let response = await axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/archiveNotes', obj, config)
-  return response
+  let response = await axios.post(`${url}/notes/archiveNotes`, obj, config)
+  return response;
 }

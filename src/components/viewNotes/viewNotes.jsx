@@ -11,6 +11,7 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import "./viewNotes.scss";
 import { addNoteToArchive } from "src/service/noteService";
+import SimplePopper from "src/components/colorPopper"
 
 class viewNotes extends Component {
 	constructor(props) {
@@ -41,6 +42,7 @@ class viewNotes extends Component {
 				this.setState({
 					data: dataArray,
 				});
+				console.log(dataArray);
 			})
 			.catch((error) => {
 				console.warn(error);
@@ -115,7 +117,8 @@ class viewNotes extends Component {
 												</IconButton>
 
 												<IconButton sx={{ p: "5px" }}>
-													<ColorLensOutlinedIcon fontSize="small" />
+													{/* <ColorLensOutlinedIcon fontSize="small" /> */}
+													<SimplePopper />
 												</IconButton>
 
 												<IconButton sx={{ p: "5px" }}>
@@ -151,6 +154,7 @@ const paperStyle = {
 	width: 260,
 	borderRadius: "5px",
 	marginTop: 15,
+	margin: 20,
 	wordWrap: "break-word",
 
 	//   border: "10px solid blue",
