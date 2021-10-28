@@ -15,6 +15,15 @@
 	margin-top: 4vh;
 }
 
+.dash-styles {
+	margin-top: 20px;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	// border: 1px solid red;
+}
+
 .take-a-note-content {
 	width: 600px;
 }
@@ -37,7 +46,7 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	// justify-content: space-evenly;
 	height: auto;
 	// border: 1px solid red;
 }

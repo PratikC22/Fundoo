@@ -10,20 +10,18 @@ class dashboard extends Component {
         // Destructuring props
         const { takeNoteOpen, handleTakeNote } = this.props
         return (
-            <div className="notes-container" style={{ width: "80%", display: "flex", flexWrap: "wrap" }}>
-                <div className="dash-take-note-container">
+            <div className="dash-styles">
 
-                    {/* ------ Conditional rendering of Take note ------ */}
-                    {takeNoteOpen ? (
-                        <TakeNoteOne handleTakeNote={handleTakeNote} />
-                    ) : (
-                        <TakeNoteTwo handleTakeNote={handleTakeNote} />
-                    )}
+                {/* ------ Conditional rendering of Take note ------ */}
+                {takeNoteOpen ? (
+                    <TakeNoteOne handleTakeNote={handleTakeNote} />
+                ) : (
+                    <TakeNoteTwo handleTakeNote={handleTakeNote} />
+                )}
 
-                    {/* ------ View Notes component ------ */}
-                    <div className="dash-view-note-container">
-                        <ViewNotes />
-                    </div>
+                {/* ------ View Notes component ------ */}
+                <div className="dash-view-note-container">
+                    <ViewNotes />
                 </div>
             </div>
         );
