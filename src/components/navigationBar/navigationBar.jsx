@@ -8,8 +8,6 @@ import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import ViewStreamOutlinedIcon from "@mui/icons-material/ViewStreamOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { Box } from "@mui/system";
 import "./navigationBar.scss";
 import LogoutPopup from "../logoutPopup";
 
@@ -26,13 +24,6 @@ class NavigationBar extends Component {
     handleClick = () => {
         this.setState({
             open: !this.state.open
-        });
-    };
-
-    // close on click away
-    handleClickAway = () => {
-        this.setState({
-            open: false
         });
     };
 
@@ -116,25 +107,7 @@ class NavigationBar extends Component {
                                 </IconButton>
                             </div>
                             <div className="navbar-sec3-item4-profile">
-                                <ClickAwayListener
-                                    mouseEvent="onMouseDown"
-                                    touchEvent="onTouchStart"
-                                    onClickAway={this.handleClickAway}
-                                >
-                                    <Box sx={{ position: "relative" }}>
-                                        <img
-                                            className="profile"
-                                            src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"
-                                            alt=""
-                                            aria-hidden="true"
-                                            style={{ width: "28px", height: "28px" }}
-                                            onClick={this.handleClick}
-                                        ></img>
-                                        {this.state.open ? (
-                                            <LogoutPopup />
-                                        ) : null}
-                                    </Box>
-                                </ClickAwayListener>
+                                <LogoutPopup />
                             </div>
                         </div>
                     </div>

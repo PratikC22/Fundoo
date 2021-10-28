@@ -5,7 +5,6 @@ import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import IconButton from "@mui/material/IconButton";
 import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
-import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
@@ -116,10 +115,8 @@ class viewNotes extends Component {
 													<PersonAddAlt1OutlinedIcon fontSize="small" />
 												</IconButton>
 
-												<IconButton sx={{ p: "5px" }}>
-													{/* <ColorLensOutlinedIcon fontSize="small" /> */}
-													<SimplePopper />
-												</IconButton>
+												{/* -------- color popper -------- */}
+												<SimplePopper />
 
 												<IconButton sx={{ p: "5px" }}>
 													<ImageOutlinedIcon fontSize="small" />
