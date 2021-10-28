@@ -12,6 +12,7 @@ class MainContainer extends Component {
         };
     }
 
+    // Drawer state toggle
     handleDrawerToggle = () => {
         this.setState({
             open: !this.state.open,
@@ -21,17 +22,16 @@ class MainContainer extends Component {
     render() {
         return (
             <>
-                {/* <div className="navbar-component"> */}
+                {/* ------ Navigation bar ------ */}
                 <NavigationBar handleDrawerToggle={this.handleDrawerToggle} />
-                {/* </div> */}
-                {/* <div className="dash-sidebar-container"> */}
+
+                {/* ------ Side bar ------ */}
                 <Sidebar
                     style={{ position: "fixed" }}
                     handleDrawerToggle={this.handleDrawerToggle}
                     open={this.state.open}
                 />
             </>
-            // </div>
         )
     }
 }

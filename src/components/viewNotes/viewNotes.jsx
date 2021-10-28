@@ -22,16 +22,19 @@ class viewNotes extends Component {
 		};
 	}
 
+	// Get all notes once component is mounted
 	componentDidMount() {
 		this.getAllNotes();
 	}
 
+	// Get all notes when component is updated
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.data === this.state.data) {
 			this.getAllNotes();
 		}
 	}
 
+	// Get all notes on click
 	getAllNotes = async () => {
 		await requestData()
 			.then((dataArray) => {
@@ -44,12 +47,14 @@ class viewNotes extends Component {
 			});
 	};
 
+	// Toggle icon visibility
 	toggleIconVisibility = () => {
 		this.setState({
 			visibility: !this.state.visibility
 		})
 	}
 
+	// Method to archive notes
 	archiveNote = (id) => {
 		let obj = {
 			noteIdList: [id],
@@ -82,6 +87,8 @@ class viewNotes extends Component {
 							<Paper className='viewNotes-Paper' style={paperStyle}>
 								<div className="note-container">
 									<div className="title-pin">
+
+										{/*------- Note Title ------- */}
 										<p>{note.title}</p>
 										<div className="note-icons">
 											<IconButton sx={{ p: "5px" }}>
@@ -91,10 +98,14 @@ class viewNotes extends Component {
 									</div>
 									<div className="note-content">
 										<div className="note-desc">
+
+											{/*------- Note Description ------- */}
 											<p>{note.description}</p>
 										</div>
 										<div className="note-icons-container">
 											<div className="note-icons">
+
+												{/*------- Icons ------- */}
 												<IconButton sx={{ p: "5px" }} >
 													<AddAlertOutlinedIcon fontSize="small" />
 												</IconButton>

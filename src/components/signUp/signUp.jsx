@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { signUpRequest } from "src/service/userService";
 import "./signUp.scss";
 
+//Regex pattern to validate
 const firstNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 const lastNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 const emailRegex =
@@ -39,12 +40,14 @@ class signUp extends Component {
     };
   }
 
+  // Method to update values in state
   handleChange = (input) => (event) => {
     this.setState({
       [input]: event.target.value,
     });
   };
 
+  // Method to update helper text
   handleInvalidState = (check, hText, err, msg) => {
     if (check) {
       this.setState({
@@ -59,6 +62,7 @@ class signUp extends Component {
     }
   };
 
+  // Method to check if entered data is valid, comparing it with regex pattern
   handleValidation = () => {
     const { firstName, lastName, email, password, confirmPassword } =
       this.state;
@@ -109,16 +113,19 @@ class signUp extends Component {
     );
   };
 
+  // Toggle visibility of password 
   handleClickShowPassword = () => {
     this.setState({
       showPassword: !this.state.showPassword,
     });
   };
 
+  // Prevent default
   handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
+  // Make request to post on click
   handleSubmit = (e) => {
     e.preventDefault();
     const valid = this.handleValidation();
@@ -151,6 +158,7 @@ class signUp extends Component {
 
             <div className="signup-header-text">Create your Google Account</div>
 
+            {/*------- Input first name field ------- */}
             <div className="signup-form-container">
               <div className="signup-name">
                 <div className="signup-firstName">
@@ -167,6 +175,7 @@ class signUp extends Component {
                   ></TextField>
                 </div>
 
+                {/*------- Input last name field ------- */}
                 <div className="signup-lastName">
                   <TextField
                     id="last-name"
@@ -182,6 +191,7 @@ class signUp extends Component {
                 </div>
               </div>
 
+              {/*------- email field ------- */}
               <div className="signup-email-container">
                 <div className="signup-email">
                   <TextField
@@ -202,6 +212,7 @@ class signUp extends Component {
                 </div>
               </div>
 
+              {/*------- password field ------- */}
               <div className="signup-password-container">
                 <div className="signup-password">
                   <TextField
@@ -219,6 +230,8 @@ class signUp extends Component {
                   ></TextField>
                 </div>
                 <div className="signup-confirm-password">
+
+                  {/*------- confirm password field ------- */}
                   <TextField
                     id="confirm-password"
                     label="Confirm"
@@ -258,6 +271,7 @@ class signUp extends Component {
                   </Link>
                 </div>
 
+                {/*------- signup button ------- */}
                 <div className="signup-button">
                   <Button onClick={this.handleSubmit} variant="contained">
                     Sign Up
@@ -281,6 +295,7 @@ class signUp extends Component {
           </div>
         </div>
 
+        {/*------- footer ------- */}
         <div className="signup-footer">
           <div className="languages">English (India)</div>
 

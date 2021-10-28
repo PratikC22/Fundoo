@@ -22,18 +22,21 @@ class NavigationBar extends Component {
         };
     }
 
+    // Toggle state open close
     handleClick = () => {
         this.setState({
             open: !this.state.open
         });
     };
 
+    // close on click away
     handleClickAway = () => {
         this.setState({
             open: false
         });
     };
 
+    // handle drawer open close from button in navbar
     handleDrawerToggle = () => {
         this.props.handleDrawerToggle();
     };
@@ -51,6 +54,7 @@ class NavigationBar extends Component {
                         </div>
 
                         <div className="navbar-sec1-item2">
+                            {/*------- fundoo image ------- */}
                             <img
                                 className=""
                                 src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
@@ -77,6 +81,7 @@ class NavigationBar extends Component {
                                     alignItems: "center",
                                 }}
                             >
+                                {/*------- Search ------- */}
                                 <IconButton sx={{ p: "10px" }} aria-label="search">
                                     <SearchIcon />
                                 </IconButton>
@@ -90,6 +95,7 @@ class NavigationBar extends Component {
                         </div>
                     </div>
 
+                    {/*------- Navigation bar icons ------- */}
                     <div className="navbar-sec3">
                         <IconButton sx={{ p: "10px" }}>
                             <RefreshOutlinedIcon />

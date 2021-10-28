@@ -24,27 +24,32 @@ class SignIn extends Component {
     };
   }
 
+  // Method to update values in state
   handleChange = (input) => (e) => {
     this.setState({
       [input]: e.target.value,
     });
   };
 
+  // Toggle password visibility
   handleClickShowPassword = () => {
     this.setState({
       showPassword: !this.state.showPassword,
     });
   };
 
+  // Prevent default
   handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
+  // Submit on click
   handleSubmit = (e) => {
     const { email, password } = this.state;
     const obj = { email, password };
     e.preventDefault();
 
+    // Axios post request
     logInRequest(obj)
       .then((response) => {
         console.log(response);
@@ -64,6 +69,8 @@ class SignIn extends Component {
         <div className="signin-border-container">
           <div className="signin-content">
             <div className="signin-google-logo">
+
+              {/*------- Google logo ------- */}
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
                 width="75"
@@ -71,6 +78,7 @@ class SignIn extends Component {
               />
             </div>
 
+            {/*------- Google header ------- */}
             <div className="signin-header-sub-header-text">
               <div className="signin-header-text" id="signin-header">
                 Sign In
@@ -80,6 +88,8 @@ class SignIn extends Component {
 
             <form onSubmit={this.handleSubmit}>
               <div className="signin-email-password">
+
+                {/*------- email input field ------- */}
                 <div className="signin-email">
                   <TextField
                     id="email"
@@ -92,6 +102,7 @@ class SignIn extends Component {
                   ></TextField>
                 </div>
 
+                {/*------- email password input field ------- */}
                 <div className="signin-password">
                   <FormControl fullWidth variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">
@@ -127,6 +138,7 @@ class SignIn extends Component {
                 </div>
               </div>
 
+              {/*------- forgot password link ------- */}
               <div className="signin-forgot-reset-password">
                 <div className="signin-forgot-password">
                   <Link id="fPassword" to="/forgotPassword">
@@ -168,6 +180,7 @@ class SignIn extends Component {
                   </Link>
                 </div>
 
+                {/*------- Sign in button ------- */}
                 <div className="signin-btn">
                   <Button variant="contained" type="submit">
                     Sign In

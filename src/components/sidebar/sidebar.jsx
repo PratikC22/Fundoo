@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 
 class Sidebar extends React.Component {
 
+	// Method to toggle drawer open close
 	handleDrawerToggle = () => {
 		this.props.handleDrawerToggle();
 	};
@@ -50,6 +51,7 @@ class Sidebar extends React.Component {
 
 const drawerWidth = 240;
 
+// Style 
 const styleSheet = createStyleSheet({
 	paper: {
 		height: "90vh",
@@ -57,6 +59,7 @@ const styleSheet = createStyleSheet({
 	},
 });
 
+// Icons array
 const menuItems = [
 	{
 		text: "Notes",

@@ -15,33 +15,39 @@ class ResetFundooPassword extends Component {
 		};
 	}
 
+	// Set token in local storage
 	componentDidMount() {
 		console.log(this.props);
 		localStorage.setItem("token", this.props.match.params.token);
 		console.log(this.props.match.params.token);
 	}
 
+	// Update values in state
 	handleChange = (input) => (e) => {
 		this.setState({
 			[input]: e.target.value,
 		});
 	};
 
+	// Toggle password visibility
 	handleClickShowPassword = () => {
 		this.setState({
 			showPassword: !this.state.showPassword,
 		});
 	};
 
+	// Prevent default
 	handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
 
+	// Submit on click
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { email } = this.state;
 		const obj = { email };
 
+		// Make axios post request 
 		requestResetPass(obj)
 			.then((response) => {
 				console.log(response);
@@ -75,6 +81,8 @@ class ResetFundooPassword extends Component {
 								Recover your Google Account
 							</div>
 						</div>
+
+						{/*------- Input password field ------- */}
 						<form onSubmit={this.handleSubmit}>
 							<div className="res-pass-email-password">
 								<div className="res-pass-email">
@@ -90,6 +98,7 @@ class ResetFundooPassword extends Component {
 								</div>
 							</div>
 
+							{/*------- Input confirm password field ------- */}
 							{/* <div className="signin-password">
                                 <FormControl fullWidth variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
@@ -135,6 +144,7 @@ class ResetFundooPassword extends Component {
 									</Link>
 								</div>
 
+								{/*------- submit button ------- */}
 								<div className="res-pass-btn">
 									<Button
 										onClick={this.handleSubmit}

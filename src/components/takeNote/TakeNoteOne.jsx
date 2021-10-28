@@ -6,6 +6,8 @@ import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import IconButton from "@mui/material/IconButton";
 
 class TakeNoteOne extends Component {
+
+    // Method to switch to takeNoteTwo
     handleTakeNote = () => {
         this.props.handleTakeNote();
     };
@@ -16,6 +18,7 @@ class TakeNoteOne extends Component {
                 className="take-note-main-container"
                 onClick={this.handleTakeNote}
             >
+                {/*------- Take Note... Text ------- */}
                 <Paper
                     className="take-a-note-content"
                     elevation={2}
@@ -23,6 +26,8 @@ class TakeNoteOne extends Component {
                 >
                     <div className="take-a-note">Take a note...</div>
                     <div className="take-a-note-icons">
+
+                        {/*------- Icons ------- */}
                         <IconButton sx={{ p: "10px" }}>
                             <CheckBoxOutlinedIcon />
                         </IconButton>

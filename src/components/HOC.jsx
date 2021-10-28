@@ -13,6 +13,7 @@ const updatedComponent = OriginalComponent => {
             };
         }
 
+        //Method to handle condition for rendering takeNoteOne and takeNoteTwo
         handleTakeNote = () => {
             this.setState({
                 takeNoteOpen: !this.state.takeNoteOpen,
@@ -27,6 +28,7 @@ const updatedComponent = OriginalComponent => {
 
         render() {
             return (
+                //Sending props to original component
                 <OriginalComponent
                     open={this.state.open}
                     takeNoteOpen={this.state.takeNoteOpen}
