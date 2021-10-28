@@ -22,6 +22,7 @@ class TakeNoteTwo extends Component {
     this.state = {
       title: "",
       description: "",
+      isArchived: false,
     };
   }
 
@@ -36,10 +37,11 @@ class TakeNoteTwo extends Component {
   };
 
   handleSubmit = () => {
-    const { title, description } = this.state;
+    const { title, description, isArchived } = this.state;
     const obj = {
       title: title,
       description: description,
+      isArchived: isArchived
     };
     this.handleTakeNote();
     title !== "" &&

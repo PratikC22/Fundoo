@@ -52,7 +52,7 @@ class viewNotes extends Component {
 
 	archiveNote = (id) => {
 		let obj = {
-			id: id,
+			noteIdList: [id],
 			isArchived: true,
 		}
 

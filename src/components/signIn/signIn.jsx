@@ -50,7 +50,7 @@ class SignIn extends Component {
         console.log(response);
         if (response.status === 200) {
           console.log(this.props);
-          this.props.history.push("/dashboard");
+          this.props.history.push("/home");
         }
       })
       .catch((error) => {

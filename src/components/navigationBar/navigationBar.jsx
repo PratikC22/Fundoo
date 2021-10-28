@@ -8,9 +8,32 @@ import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import ViewStreamOutlinedIcon from "@mui/icons-material/ViewStreamOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import { Box } from "@mui/system";
 import "./navigationBar.scss";
+import LogoutPopup from "../logoutPopup";
 
 class NavigationBar extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        };
+    }
+
+    handleClick = () => {
+        this.setState({
+            open: !this.state.open
+        });
+    };
+
+    handleClickAway = () => {
+        this.setState({
+            open: false
+        });
+    };
+
     handleDrawerToggle = () => {
         this.props.handleDrawerToggle();
     };
@@ -87,13 +110,25 @@ class NavigationBar extends Component {
                                 </IconButton>
                             </div>
                             <div className="navbar-sec3-item4-profile">
-                                <img
-                                    className="profile"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"
-                                    alt=""
-                                    aria-hidden="true"
-                                    style={{ width: "28px", height: "28px" }}
-                                ></img>
+                                <ClickAwayListener
+                                    mouseEvent="onMouseDown"
+                                    touchEvent="onTouchStart"
+                                    onClickAway={this.handleClickAway}
+                                >
+                                    <Box sx={{ position: "relative" }}>
+                                        <img
+                                            className="profile"
+                                            src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"
+                                            alt=""
+                                            aria-hidden="true"
+                                            style={{ width: "28px", height: "28px" }}
+                                            onClick={this.handleClick}
+                                        ></img>
+                                        {this.state.open ? (
+                                            <LogoutPopup />
+                                        ) : null}
+                                    </Box>
+                                </ClickAwayListener>
                             </div>
                         </div>
                     </div>
@@ -102,5 +137,17 @@ class NavigationBar extends Component {
         );
     }
 }
+
+const styles = {
+    boxShadow: "1px 1px 5px grey",
+    boxSizing: "border-box",
+    backgroundColor: "#fff",
+    border: "2px solid white",
+    zIndex: "20",
+    // width: "200px",
+    borderRadius: "3px",
+    height: "100px",
+    position: "absolute",
+};
 
 export default NavigationBar;

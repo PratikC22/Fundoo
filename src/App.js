@@ -1,9 +1,9 @@
-import RouterDom from "./router/router";
+import MyRouter from "./router/router";
 
 function App() {
   return (
-    <div>
-      <RouterDom />
+    <div className='App-container'>
+      <MyRouter />
     </div>
   );
 }

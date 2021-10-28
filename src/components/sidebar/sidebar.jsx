@@ -12,40 +12,38 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import { Link } from "react-router-dom";
 
 class Sidebar extends React.Component {
+
 	handleDrawerToggle = () => {
 		this.props.handleDrawerToggle();
-	};
-
-	handleDrawerClose = () => {
-		this.props.handleDrawerClose();
-	};
-
-	handleDrawerOpen = () => {
-		this.props.handleDrawerOpen();
 	};
 
 	render() {
 		const classes = this.props.classes;
 
 		return (
-			<Drawer
-				classes={{ paper: classes.paper }}
-				variant="permanent"
-				open={this.props.open}
-				onMouseEnter={this.handleDrawerOpen}
-				onMouseLeave={this.handleDrawerClose}
-			>
-				<List>
-					{menuItems.map((item) => (
-						<ListItem button key={item.text}>
-							<ListItemIcon>{item.icon}</ListItemIcon>
-							<ListItemText primary={item.text} />
-						</ListItem>
-					))}
-				</List>
-			</Drawer>
+			<div className="sidebar-div" style={{ width: "240px" }}>
+				<Drawer
+					classes={{ paper: classes.paper }}
+					variant="permanent"
+					open={this.props.open}
+					onMouseEnter={this.handleDrawerToggle}
+					onMouseLeave={this.handleDrawerToggle}
+				>
+					<List>
+						{menuItems.map((item) => (
+							<ListItem button key={item.text}>
+								<Link to={item.linkTo} style={{ display: 'flex', textDecoration: 'none', color: 'black' }}>
+									<ListItemIcon>{item.icon}</ListItemIcon>
+									<ListItemText primary={item.text} />
+								</Link>
+							</ListItem>
+						))}
+					</List>
+				</Drawer>
+			</div>
 		);
 	}
 }
@@ -63,22 +61,27 @@ const menuItems = [
 	{
 		text: "Notes",
 		icon: <LightbulbOutlinedIcon />,
+		linkTo: '/home'
 	},
 	{
 		text: "Reminders",
 		icon: <NotificationsNoneOutlinedIcon />,
+		linkTo: '/reminders'
 	},
 	{
 		text: "Edit Labels",
 		icon: <ModeEditOutlineOutlinedIcon />,
+		linkTo: '/main'
 	},
 	{
 		text: "Archive",
 		icon: <ArchiveOutlinedIcon />,
+		linkTo: '/archive'
 	},
 	{
 		text: "Bin",
 		icon: <DeleteOutlinedIcon />,
+		linkTo: '/trash'
 	},
 ];
 
