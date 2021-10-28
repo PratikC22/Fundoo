@@ -70,7 +70,6 @@ class viewNotes extends Component {
 
 	render() {
 		const { data } = this.state;
-		console.log(data);
 		return data.length === 0 ? (
 			<div className="loading-view-notes">
 				<p>Loading...</p>

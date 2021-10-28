@@ -138,16 +138,4 @@ class NavigationBar extends Component {
     }
 }
 
-const styles = {
-    boxShadow: "1px 1px 5px grey",
-    boxSizing: "border-box",
-    backgroundColor: "#fff",
-    border: "2px solid white",
-    zIndex: "20",
-    // width: "200px",
-    borderRadius: "3px",
-    height: "100px",
-    position: "absolute",
-};
-
 export default NavigationBar;
