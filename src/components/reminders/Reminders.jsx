@@ -20,7 +20,7 @@ class Reminders extends Component {
 
                 {/* ------ View Notes component ------ */}
                 <div className="dash-view-note-container">
-                    <ViewNotes />
+                    {/* <ViewNotes /> */}
                 </div>
             </div>
         )

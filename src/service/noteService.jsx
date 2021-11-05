@@ -3,7 +3,6 @@ const url = "http://fundoonotes.incubation.bridgelabz.com/api/";
 
 const config = {
   headers: {
-    // "Content-Type": 'application/json',
     Authorization: localStorage.getItem("fundooToken"),
   },
 };
@@ -20,6 +19,31 @@ export const requestData = async () => {
 };
 
 export const addNoteToArchive = async (obj) => {
-  let response = await axios.post(`${url}/notes/archiveNotes`, obj, config)
+  let response = await axios.post(`${url}/notes/archiveNotes`, obj, config);
+  return response;
+}
+
+export const trashNote = async (obj) => {
+  let response = await axios.post(`${url}/notes/trashNotes`, obj, config);
+  return response;
+}
+
+export const changeColor = async (obj) => {
+  let response = await axios.post(`${url}/notes/changesColorNotes`, obj, config);
+  return response;
+}
+
+export const getReminders = async (obj) => {
+  let response = await axios.post(`${url}/notes/getReminderNotesList`, obj, config);
+  return response;
+}
+
+export const getArchivedNotes = async (obj) => {
+  let response = await axios.get(`${url}/notes/getArchiveNotesList`, config);
+  return response;
+}
+
+export const getTrashedNotes = async (obj) => {
+  let response = await axios.get(`${url}/notes/getTrashNotesList`, config);
   return response;
 }

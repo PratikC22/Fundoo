@@ -32,32 +32,15 @@
 	justify-content: space-between;
 }
 
-// .note-desc {
-// 	p {
-// 		font-size: 1.15em;
-// 	}
-// }
-
 .note-icons {
 	// border: 1px solid black;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	visibility: hidden;
 }
 
 .viewNotes-Paper-container:hover {
 	.viewNotes-Paper {
 		box-shadow: 1px 1px 4px grey;
 	}
-
-	.note-icons {
-		visibility: visible;
-	}
 }
-
-// @media screen and (max-width: 720px) {
-// 	.take-note-main-container {
-// 		width: auto;
-// 	}
-// }
