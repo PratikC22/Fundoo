@@ -13,17 +13,8 @@ class archiveNotes extends Component {
         }
     }
 
-
-    // Filter archived Notes
-    filterArchivedNotes = () => {
-        console.log(this.state.data);
-        const archivedList = this.state.data.filter(element => { return element.isArchived })
-        console.log(archivedList);
-    }
-
     componentDidMount() {
         getArchivedNotes().then((dataArray) => {
-            // console.log(dataArray.data.data.data);
             this.setState({
                 archivedList: dataArray.data.data.data
             })
@@ -38,7 +29,9 @@ class archiveNotes extends Component {
             <div style={{ width: "80%", display: "flex", flexWrap: "wrap" }}>
                 {
                     this.state.archivedList.map((note) => {
-                        return <ViewNotes key={note.id} note={note} />
+                        return <ViewNotes key={note.id} note={note}
+                            toggleArchive={(stateName) => this.toggleArchive(stateName)}
+                            action="archiveProp" />
                     })
                 }
             </div>

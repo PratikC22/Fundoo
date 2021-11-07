@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import updatedComponent from '../HOC.jsx';
 import TakeNoteOne from "../takeNote/TakeNoteOne.jsx";
 import TakeNoteTwo from "../takeNote/TakeNoteTwo.jsx";
-import ViewNotes from "../viewNotes/viewNotes";
 
 class Reminders extends Component {
     render() {

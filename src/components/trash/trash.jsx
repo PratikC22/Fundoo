@@ -11,21 +11,11 @@ class trash extends Component {
         }
     }
 
-
-    // Filter archived Notes
-    filterArchivedNotes = () => {
-        console.log(this.state.data);
-        const deletedList = this.state.data.filter(element => { return element.isDeleted })
-        console.log(deletedList);
-    }
-
     componentDidMount() {
         getTrashedNotes().then((dataArray) => {
-            // console.log(dataArray.data.data.data);
             this.setState({
                 deletedList: dataArray.data.data.data
-            })
-            console.log(this.state.deletedList);
+            }, () => console.log(this.state.deletedList))
         }).catch((error) => {
             console.warn(error);
         });
