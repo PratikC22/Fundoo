@@ -12,14 +12,30 @@ class dashboard extends Component {
         super(props);
 
         this.state = {
+            renderOpen: "true",
             data: [],
             dashboardNotes: [],
         };
     }
 
+    toggleRenderState = (stateName) => {
+        this.setState({
+            renderOpen: stateName
+        })
+    }
+
     // Get all notes once component is mounted
     componentDidMount() {
         this.getAllNotes();
+    }
+
+    componentDidUpdate() {
+        if (this.state.renderOpen === "false") {
+            this.getAllNotes();
+            this.setState({
+                renderOpen: "true"
+            })
+        }
     }
 
     // Get all notes on click
@@ -46,6 +62,10 @@ class dashboard extends Component {
         })
     }
 
+    addToDashboardNotes = () => {
+        this.getAllNotes();
+    }
+
     render() {
         // Destructuring props
         const { takeNoteOpen, handleTakeNote } = this.props
@@ -56,14 +76,15 @@ class dashboard extends Component {
                 {takeNoteOpen ? (
                     <TakeNoteOne handleTakeNote={handleTakeNote} />
                 ) : (
-                    <TakeNoteTwo handleTakeNote={handleTakeNote} />
+                    <TakeNoteTwo handleTakeNote={handleTakeNote} addToDashboardNotes={this.addToDashboardNotes} />
                 )}
 
                 {/* ------ View Notes component ------ */}
                 <div className="dash-view-note-container">
                     {
                         this.state.dashboardNotes.map((note) => {
-                            return <ViewNotes key={note.id} note={note} />
+                            return <ViewNotes key={note.id} note={note}
+                                toggleRenderState={(stateName) => this.toggleRenderState(stateName)} />
                         })
                     }
                 </div>

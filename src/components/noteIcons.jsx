@@ -31,6 +31,7 @@ class NoteIcons extends Component {
 
         changeColor(noteData).then((response) => {
             console.log(response);
+            this.props.toggleRenderState("false");
         }).catch((error) => {
             console.warn(error);
         })
@@ -44,12 +45,13 @@ class NoteIcons extends Component {
 
         let noteData = {
             noteIdList: [id],
-            isArchived: this.state.isArchived,
+            isArchived: !this.state.isArchived,
         }
 
         console.log(noteData);
         addNoteToArchive(noteData).then((response) => {
             console.log(response);
+            this.props.toggleRenderState("false");
         }).catch((error) => {
             console.warn(error);
         })
@@ -68,6 +70,7 @@ class NoteIcons extends Component {
         console.log(noteData);
         trashNote(noteData).then((response) => {
             console.log(response);
+            this.props.toggleRenderState("false");
         }).catch((error) => {
             console.warn(error);
         })

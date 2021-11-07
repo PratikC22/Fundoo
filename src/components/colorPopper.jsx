@@ -12,7 +12,7 @@ export default function SimplePopper({ changeNoteColor }) {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleMouseLeave = (event) => {
+    const handleMouseLeave = () => {
         setAnchorEl(null);
     };
 

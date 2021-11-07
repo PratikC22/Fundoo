@@ -56,11 +56,15 @@ class viewNotes extends Component {
 									{/*------- Note Description ------- */}
 									<p>{note.description}</p>
 								</div>
+
+								{/*------- Note Icons ------- */}
 								<div className="note-icons-container">
 									{
 										this.state.visibility === true ? <NoteIcons
 											note={note}
 											listenToMouseOver={this.listenToMouseOver}
+											toggleRenderState={(stateName) => this.props.toggleRenderState(stateName)}
+											type="viewNotes"
 										/> : null
 									}
 								</div>

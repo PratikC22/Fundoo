@@ -11,9 +11,10 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import UndoOutlinedIcon from "@mui/icons-material/UndoOutlined";
 import RedoOutlinedIcon from "@mui/icons-material/RedoOutlined";
-import "./TakeNoteTwo.scss";
 import { takeNoteRequest } from "src/service/noteService";
-
+import Box from "@mui/material/Box";
+import Popper from "@mui/material/Popper"
+import "./TakeNoteTwo.scss";
 
 class TakeNoteTwo extends Component {
   constructor(props) {
@@ -22,7 +23,9 @@ class TakeNoteTwo extends Component {
     this.state = {
       title: "",
       description: "",
+      color: "#fff",
       isArchived: false,
+      anchorEl: null
     };
   }
 
@@ -38,12 +41,20 @@ class TakeNoteTwo extends Component {
     this.props.handleTakeNote();
   };
 
+  // Toggle isArchived state true
+  handleIsArchive = () => {
+    this.setState({
+      isArchived: !this.state.isArchived
+    }, () => console.log(this.state.isArchived))
+  }
+
   // Method to submit note
   handleSubmit = () => {
-    const { title, description, isArchived } = this.state;
+    const { title, description, isArchived, color } = this.state;
     const obj = {
       title: title,
       description: description,
+      color: color,
       isArchived: isArchived
     };
 
@@ -53,14 +64,40 @@ class TakeNoteTwo extends Component {
         .then((response) => {
           console.log(response);
           console.log(obj);
+          this.props.addToDashboardNotes(obj);
         })
         .catch((error) => {
           console.warn(error);
         });
   };
 
+  // Show color popper when mouse hovered
+  handleMouseOver = (event) => {
+    this.setState({
+      anchorEl: event.currentTarget
+    });
+  };
+
+  // Hide color popper when mouse is not hovered
+  handleMouseLeave = () => {
+    this.setState({
+      anchorEl: null
+    });
+  };
+
+  // Change color when user selects a color in popper
+  handleChangeColor = (color) => {
+    this.setState({
+      color: color
+    }, () => console.log(this.state.color))
+  }
+
   render() {
     const { classes } = this.props;
+    const open = Boolean(this.state.anchorEl);
+    const id = open ? "simple-popper" : undefined;
+    const colors = ["#fff", "#f28b82", "#fbbc04", "#fff475", "#ccff90", "#a7ffeb",
+      "#cbf0f8", "#aecbfa", "#d7aefb", "#fdcfe8", "#e6c9a8", "#e8eaed"]
 
     return (
       <div className="take-note-two-main-container">
@@ -100,15 +137,40 @@ class TakeNoteTwo extends Component {
                 <PersonAddAlt1OutlinedIcon fontSize="small" />
               </IconButton>
 
-              <IconButton sx={{ p: "10px" }}>
+              <IconButton sx={{ p: "10px" }}
+                onMouseOver={this.handleMouseOver}
+                onMouseLeave={this.handleMouseLeave}>
                 <ColorLensOutlinedIcon fontSize="small" />
+                <Popper
+                  id={id} open={open} anchorEl={this.state.anchorEl} placement="top"
+                >
+                  <Paper elevation={2} sx={{
+                    width: 140,
+                    padding: 1,
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                  }}
+                  >
+                    {/* ---------- The content of the Popper ---------- */}
+                    {colors.map((color) => (
+                      <div key={color}>
+                        <Box
+                          sx={colorItem} id={color}
+                          style={{ backgroundColor: `${color}` }}
+                          onClick={() => this.handleChangeColor(color)}
+                        />
+                      </div>
+                    ))}
+                  </Paper>
+                </Popper>
               </IconButton>
 
               <IconButton sx={{ p: "10px" }}>
                 <ImageOutlinedIcon fontSize="small" />
               </IconButton>
 
-              <IconButton sx={{ p: "10px" }}>
+              <IconButton sx={{ p: "10px" }} onClick={this.handleIsArchive}>
                 <ArchiveOutlinedIcon fontSize="small" />
               </IconButton>
 
@@ -165,5 +227,15 @@ const paperStyle = {
   borderRadius: "5px",
   // border: "1px solid red",
 };
+
+const colorItem = {
+  border: "1px solid",
+  width: "28px",
+  height: "28px",
+  borderRadius: "50%",
+  margin: "1px",
+  cursor: "pointer",
+  opacity: "0.7",
+}
 
 export default withStyles(useStyles)(TakeNoteTwo);
