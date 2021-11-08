@@ -39,41 +39,71 @@ class NoteIcons extends Component {
 
     // Method to archive notes
     archiveNote = (id) => {
-        this.setState({
-            isArchived: !this.state.isArchived
-        })
+        if (this.props.action === "archiveProp") {
+            let noteData = {
+                noteIdList: [id],
+                isArchived: this.state.isArchived,
+            }
 
-        let noteData = {
-            noteIdList: [id],
-            isArchived: !this.state.isArchived,
+            addNoteToArchive(noteData).then((response) => {
+                console.log(response);
+                this.props.removeFromArchive(id);
+            }).catch((error) => {
+                console.warn(error);
+            })
+        } else if (this.props.dashboardCheck === "dashboardCheck") {
+            this.setState({
+                isArchived: !this.state.isArchived
+            })
+
+            let noteData = {
+                noteIdList: [id],
+                isArchived: !this.state.isArchived,
+            }
+
+            addNoteToArchive(noteData).then((response) => {
+                console.log(response);
+                this.props.toggleRenderState("false");
+            }).catch((error) => {
+                console.warn(error);
+            })
         }
-
-        console.log(noteData);
-        addNoteToArchive(noteData).then((response) => {
-            console.log(response);
-            this.props.toggleRenderState("false");
-        }).catch((error) => {
-            console.warn(error);
-        })
     }
 
     // Method to trash notes
     deleteNote = (id) => {
-        this.setState({
-            isDeleted: !this.state.isDeleted
-        })
+        if (this.props.dashboardCheck === "dashboardCheck") {
+            this.setState({
+                isDeleted: !this.state.isDeleted
+            })
 
-        let noteData = {
-            noteIdList: [id],
-            isDeleted: this.state.isDeleted,
-        };
-        console.log(noteData);
-        trashNote(noteData).then((response) => {
-            console.log(response);
-            this.props.toggleRenderState("false");
-        }).catch((error) => {
-            console.warn(error);
-        })
+            let noteData = {
+                noteIdList: [id],
+                isDeleted: !this.state.isDeleted,
+            };
+            console.log(noteData);
+            trashNote(noteData).then((response) => {
+                console.log(response);
+                this.props.toggleRenderState("false");
+            }).catch((error) => {
+                console.warn(error);
+            })
+        }
+        else if (this.props.trash === "trashProp") {
+
+            let noteData = {
+                noteIdList: [id],
+                isDeleted: this.state.isDeleted,
+            };
+            console.log(noteData);
+            trashNote(noteData).then((response) => {
+                console.log(response);
+                this.props.removeFromTrash(id);
+            }).catch((error) => {
+                console.warn(error);
+            })
+            console.log("success")
+        }
     }
 
     render() {

@@ -84,7 +84,8 @@ class dashboard extends Component {
                     {
                         this.state.dashboardNotes.map((note) => {
                             return <ViewNotes key={note.id} note={note}
-                                toggleRenderState={(stateName) => this.toggleRenderState(stateName)} />
+                                toggleRenderState={(stateName) => this.toggleRenderState(stateName)}
+                                dashboardCheck="dashboardCheck" />
                         })
                     }
                 </div>

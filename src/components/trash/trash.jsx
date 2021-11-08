@@ -8,9 +8,11 @@ class trash extends Component {
 
         this.state = {
             deletedList: [],
+            isTrashed: false
         }
     }
 
+    // Load trash notes once component is mounted
     componentDidMount() {
         getTrashedNotes().then((dataArray) => {
             this.setState({
@@ -21,12 +23,32 @@ class trash extends Component {
         });
     }
 
+    // Method to remove note from trash
+    removeFromTrash = (id) => {
+        let note = {};
+        for (let i = 0; i < this.state.deletedList.length; i++) {
+            let obj = this.state.deletedList[i];
+            if (obj.id === id) {
+                note = obj;
+            }
+        }
+        const index = this.state.deletedList.indexOf(note);
+        if (index > -1) {
+            this.state.deletedList.splice(index, 1);
+            this.setState({
+                isTrashed: !this.state.isTrashed
+            })
+        }
+    }
+
     render() {
         return (
             <div style={{ width: "80%", display: "flex", flexWrap: "wrap" }}>
                 {
                     this.state.deletedList.map((note) => {
-                        return <ViewNotes key={note.id} note={note} />
+                        return <ViewNotes key={note.id} note={note}
+                            removeFromTrash={(id) => this.removeFromTrash(id)}
+                            trash="trashProp" />
                     })
                 }
             </div>

@@ -64,7 +64,11 @@ class viewNotes extends Component {
 											note={note}
 											listenToMouseOver={this.listenToMouseOver}
 											toggleRenderState={(stateName) => this.props.toggleRenderState(stateName)}
-											type="viewNotes"
+											removeFromArchive={(id) => this.props.removeFromArchive(id)}
+											removeFromTrash={(id) => this.props.removeFromTrash(id)}
+											dashboardCheck={this.props.dashboardCheck}
+											action={this.props.action}
+											trash={this.props.trash}
 										/> : null
 									}
 								</div>
