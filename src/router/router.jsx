@@ -10,22 +10,24 @@ import Reminders from 'src/components/reminders/Reminders'
 import PageNotFound from 'src/components/pageNotFound'
 import Trash from 'src/components/trash/trash'
 import ArchiveNotes from 'src/components/archiveNotes/archiveNotes'
+import ProtectedRoute from './ProtectedRoute';
+import AuthRoute from './AuthRoute';
 
 export const MyRouter = () => {
     return (
 
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={signIn} />
-                <Route path='/signUp' component={signUp} />
-                <Route path='/ResetFundooPassword/' component={ResetFundooPassword} />
-                <Route path='/resetpassword/:token' component={Resetpassword} />
+                <AuthRoute exact path='/' component={signIn} />
+                <AuthRoute path='/signUp' component={signUp} />
+                <AuthRoute path='/ResetFundooPassword/' component={ResetFundooPassword} />
+                <AuthRoute path='/resetpassword/:token' component={Resetpassword} />
                 <>
                     <MainContainer />
-                    <Route exact path="/home" component={Dashboard}></Route>
-                    <Route exact path="/reminders" component={Reminders}></Route>
-                    <Route exact path="/archive" component={ArchiveNotes}></Route>
-                    <Route exact path="/trash" component={Trash} ></Route>
+                    <ProtectedRoute exact path="/home" component={Dashboard}></ProtectedRoute>
+                    <ProtectedRoute exact path="/reminders" component={Reminders}></ProtectedRoute>
+                    <ProtectedRoute exact path="/archive" component={ArchiveNotes}></ProtectedRoute>
+                    <ProtectedRoute exact path="/trash" component={Trash} ></ProtectedRoute>
                 </>
                 <Route exact path="*" component={PageNotFound}></Route>
             </Switch>

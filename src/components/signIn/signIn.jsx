@@ -11,8 +11,11 @@ import {
   InputAdornment,
 } from "@mui/material/";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import "./signIn.scss";
 
+toast.configure();
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +46,11 @@ class SignIn extends Component {
     event.preventDefault();
   };
 
+  // Toast notification method
+  notify = () => {
+    toast('Invalid Username password combination!', { position: toast.POSITION.TOP_CENTER })
+  }
+
   // Submit on click
   handleSubmit = (e) => {
     const { email, password } = this.state;
@@ -52,13 +60,14 @@ class SignIn extends Component {
     // Axios post request
     logInRequest(obj)
       .then((response) => {
-        console.log(response);
+        console.log(response.status);
         if (response.status === 200) {
           console.log(this.props);
           this.props.history.push("/home");
         }
       })
       .catch((error) => {
+        this.notify();
         console.warn(error);
       });
   };
@@ -141,9 +150,6 @@ class SignIn extends Component {
               {/*------- forgot password link ------- */}
               <div className="signin-forgot-reset-password">
                 <div className="signin-forgot-password">
-                  <Link id="fPassword" to="/forgotPassword">
-                    Forgot password?
-                  </Link>
                 </div>
                 <div className="signin-reset-password">
                   <Link id="res-Pass" to="/ResetFundooPassword">

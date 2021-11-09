@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { requestResetPass } from "src/service/userService";
 import { TextField, Button } from "@mui/material/";
 import "./ResetFundooPassword.scss";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class ResetFundooPassword extends Component {
 	constructor(props) {
@@ -41,6 +43,11 @@ class ResetFundooPassword extends Component {
 		event.preventDefault();
 	};
 
+	// Toast notification method
+	notify = () => {
+		toast('Reset password link is sent to your registered email address.', { position: toast.POSITION.TOP_CENTER })
+	}
+
 	// Submit on click
 	handleSubmit = (e) => {
 		e.preventDefault();
@@ -52,9 +59,7 @@ class ResetFundooPassword extends Component {
 			.then((response) => {
 				console.log(response);
 				if (response.status === 200) {
-					alert(
-						"Reset password link is sent to your registered email address."
-					);
+					this.notify();
 				}
 			})
 			.catch((error) => {
