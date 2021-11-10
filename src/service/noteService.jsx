@@ -47,3 +47,10 @@ export const getTrashedNotes = async (obj) => {
   let response = await axios.get(`${url}/notes/getTrashNotesList`, config);
   return response;
 }
+
+export const updateNotes = async (obj) => {
+  console.log(obj)
+  console.log(config)
+  let response = await axios.post(`${url}/notes/updateNotes`, obj, config);
+  return response;
+}

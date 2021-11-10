@@ -15,6 +15,7 @@ import { takeNoteRequest } from "src/service/noteService";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper"
 import "./TakeNoteTwo.scss";
+import { updateNotes } from "src/service/noteService";
 
 class TakeNoteTwo extends Component {
   constructor(props) {
@@ -25,7 +26,9 @@ class TakeNoteTwo extends Component {
       description: "",
       color: "#fff",
       isArchived: false,
-      anchorEl: null
+      anchorEl: null,
+      updateTitle: '',
+      updateDesc: ''
     };
   }
 
@@ -57,7 +60,7 @@ class TakeNoteTwo extends Component {
       color: color,
       isArchived: isArchived
     };
-
+    // add note api call
     this.handleTakeNote();
     title !== "" &&
       takeNoteRequest(obj)
@@ -92,7 +95,26 @@ class TakeNoteTwo extends Component {
     }, () => console.log(this.state.color))
   }
 
+  // Handle update note
+  updateNoteCloseBtn = () => {
+    const obj = {
+      noteId: this.props.note.id,
+      title: this.props.updateTitle,
+      description: this.props.updateDesc,
+      isArchived: this.state.isArchived
+    };
+    // update note api call
+    updateNotes(obj)
+      .then((response) => {
+        console.log(response);
+        this.props.toggleModalOpen();
+        this.props.toggleRenderState('false');
+      })
+      .catch((error) => console.warn(error));
+  }
+
   render() {
+    console.log(this.props);
     const { classes } = this.props;
     const open = Boolean(this.state.anchorEl);
     const id = open ? "simple-popper" : undefined;
@@ -108,23 +130,47 @@ class TakeNoteTwo extends Component {
         >
 
           {/* ----------- Title ----------- */}
-          <div className="take-a-note-two">
-            <InputBase
-              className={classes.input}
-              fullWidth
-              placeholder="Title"
-              onChange={this.handleChange("title")}
-            />
+          {
+            (this.props.modal === "fromModal") ?
+              <div className="take-a-note-two">
+                <InputBase
+                  className={classes.input}
+                  fullWidth
+                  placeholder="Title"
+                  onChange={this.handleChange("updateTitle")}
+                  defaultValue={this.props.note.title}
+                />
 
-            {/* ----------- Description ----------- */}
-            <InputBase
-              className={classes.input}
-              multiline
-              fullWidth
-              onChange={this.handleChange("description")}
-              placeholder="Take a note..."
-            />
-          </div>
+                {/* ----------- Description ----------- */}
+                <InputBase
+                  className={classes.input}
+                  multiline
+                  fullWidth
+                  onChange={this.handleChange("updateDesc")}
+                  placeholder="Take a note..."
+                  defaultValue={this.props.note.description}
+                />
+              </div>
+              :
+              <div className="take-a-note-two">
+                <InputBase
+                  className={classes.input}
+                  fullWidth
+                  placeholder="Title"
+                  onChange={this.handleChange("title")}
+                />
+
+                {/* ----------- Description ----------- */}
+                <InputBase
+                  className={classes.input}
+                  multiline
+                  fullWidth
+                  onChange={this.handleChange("description")}
+                  placeholder="Take a note..."
+                />
+              </div>
+
+          }
 
           {/* ----------- Icons ----------- */}
           <div className="take-note-bottom">
@@ -154,7 +200,7 @@ class TakeNoteTwo extends Component {
                   >
                     {/* ---------- The content of the Popper ---------- */}
                     {colors.map((color) => (
-                      <div key={color}>
+                      <div key={color} >
                         <Box
                           sx={colorItem} id={color}
                           style={{ backgroundColor: `${color}` }}
@@ -190,13 +236,21 @@ class TakeNoteTwo extends Component {
             {/* ----------- Close button ----------- */}
             <div className="take-note-close">
               <div className="close">
-                <IconButton
-                  size="small"
-                  sx={{ p: "4px" }}
-                  onClick={this.handleSubmit}
-                >
-                  close
-                </IconButton>
+                {
+                  (this.props.modal === "fromModal") ? <IconButton
+                    size="small"
+                    sx={{ p: "4px" }}
+                    onClick={this.updateNoteCloseBtn}
+                  >
+                    close
+                  </IconButton> : <IconButton
+                    size="small"
+                    sx={{ p: "4px" }}
+                    onClick={this.handleSubmit}
+                  >
+                    close
+                  </IconButton>
+                }
               </div>
             </div>
           </div>

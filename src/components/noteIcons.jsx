@@ -31,7 +31,9 @@ class NoteIcons extends Component {
 
         changeColor(noteData).then((response) => {
             console.log(response);
-            this.props.toggleRenderState("false");
+            if (this.props.dashboardCheck === "dashboardCheck") {
+                this.props.toggleRenderState("false");
+            }
         }).catch((error) => {
             console.warn(error);
         })

@@ -4,6 +4,7 @@ import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import IconButton from "@mui/material/IconButton";
 import NoteIcons from "../noteIcons";
 import "./viewNotes.scss";
+import BasicModal from "../BasicModal";
 
 class viewNotes extends Component {
 	constructor(props) {
@@ -11,7 +12,15 @@ class viewNotes extends Component {
 
 		this.state = {
 			visibility: false,
+			modalOpen: false,
 		};
+	}
+
+	// Toggle modal open
+	toggleModalOpen = () => {
+		this.setState({
+			modalOpen: !this.state.modalOpen
+		})
 	}
 
 	// Toggle icon visibility
@@ -36,7 +45,8 @@ class viewNotes extends Component {
 						style={paperStyle}
 						sx={{ backgroundColor: `${note.color}` }}
 						onMouseEnter={this.toggleIconVisibility}
-						onMouseLeave={this.toggleIconVisibility}>
+						onMouseLeave={this.toggleIconVisibility}
+						onClick={this.toggleModalOpen}>
 						<div className="note-container">
 							<div className="title-pin">
 
@@ -76,6 +86,13 @@ class viewNotes extends Component {
 						</div>
 					</Paper>
 				</div>
+				<div>
+					<BasicModal
+						note={note}
+						toggleModalOpen={this.toggleModalOpen}
+						toggleRenderState={(stateName) => this.props.toggleRenderState(stateName)}
+						modalOpen={this.state.modalOpen} />
+				</div>
 			</React.Fragment>
 		);
 	}
@@ -88,7 +105,6 @@ const paperStyle = {
 	minHeight: 125,
 	height: "auto",
 	width: 260,
-	borderRadius: "5px",
 	marginTop: 15,
 	margin: 20,
 	wordWrap: "break-word",

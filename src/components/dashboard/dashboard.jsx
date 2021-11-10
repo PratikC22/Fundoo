@@ -76,7 +76,11 @@ class dashboard extends Component {
                 {takeNoteOpen ? (
                     <TakeNoteOne handleTakeNote={handleTakeNote} />
                 ) : (
-                    <TakeNoteTwo handleTakeNote={handleTakeNote} addToDashboardNotes={this.addToDashboardNotes} />
+                    <TakeNoteTwo
+                        renderOpen={this.state.renderOpen}
+                        handleTakeNote={handleTakeNote}
+                        addToDashboardNotes={this.addToDashboardNotes}
+                    />
                 )}
 
                 {/* ------ View Notes component ------ */}
